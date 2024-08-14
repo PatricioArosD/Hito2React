@@ -5,19 +5,24 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 import { coso } from '../utils/coso';
-const CardPizza = (props) => {
+const CardPizza = ({pizza}) => {
   return (
     <div className="card mx-2">
-      <img src={props.img} className="card-img-top" alt="Plumon" />
+      <img src={pizza.img} className="card-img-top" alt="Plumon" />
       <div className="card-body">
-        <h5 className="card-title fw-light mb-3 fs-2">Pizza {props.name}</h5>
+        <h5 className="card-title fw-light mb-3 fs-2">Pizza {pizza.name}</h5>
         <hr />
         <p className="card-text h6 fw-light text-center fs-3">Ingredientes: </p>
-        <p className="fw-light text-center">
-          <FontAwesomeIcon icon={faPizzaSlice} /> {props.ingredients.join(", ")}
+        <p className="fw-light fs-5">
+        <ul>{pizza.ingredients.map ((ingredients,index)=>(
+            <li key={ingredients.index} >
+                {ingredients} <FontAwesomeIcon icon={faPizzaSlice} />
+            </li>
+        ))}
+          </ul>
         </p>
         <hr />
-        <p className="h2 fw-bold green text-center">Total:${coso(props.price)}</p>
+        <p className="h2 fw-bold green text-center">Total:${coso(pizza.price)}</p>
       </div>
       <div className="butonCard">
         <button type="button" class="btn btn-light border border-dark">
