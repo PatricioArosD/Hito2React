@@ -4,9 +4,7 @@ const Login = ({ user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(user);
-  console.log(email);
-  console.log(password);
+
 
   const validarLogin = (e) => {
     e.preventDefault();

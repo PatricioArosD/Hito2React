@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { coso } from "../utils/coso";
 
 const Cart = ({ pizzas }) => {
   const [carrito, setCarrito] = useState([]);
@@ -7,14 +8,18 @@ const Cart = ({ pizzas }) => {
     (acumulador, pizza) => (acumulador += pizza.count),
     0
   );
+
+  let nombretotal = carrito.map(pizza => pizza.count + " " + pizza.name).join("\n");
+
+
   const obtenerCantidad = (pizza) => {
     const itemEnCarrito = carrito.find((item) => item.id === pizza.id);
     return itemEnCarrito ? itemEnCarrito.count : 0;
   };
-  let totalPagar = carrito.reduce(
-    (acumulador, pizza) => (acumulador += pizza.precio * pizza.count),
+  let totalPagar = coso(carrito.reduce(
+    (acumulador, pizza) => (acumulador +=  +pizza.precio * pizza.count),
     0
-  );
+  ));
   const incrementar = (pizza) => {
     let coincidencia = carrito.findIndex((item) => item.id === pizza.id);
     let nuevo_pizza = {
@@ -45,10 +50,8 @@ const Cart = ({ pizzas }) => {
   };
 
   return (
-    <div div class="card">
-      <h5>detalles del pedido: {} </h5>
-      <h2>cantidad de produto {total} </h2>
-      <h2>Cantidad a Pagar {totalPagar} </h2>
+    
+    <div className="">
       <div className="m3 d-flex justify-content-center">
         {pizzas.map((pizza) => (
           <div
@@ -57,9 +60,9 @@ const Cart = ({ pizzas }) => {
           >
             <div>
               <img src={pizza.img} className="w-100 rounded-top" alt="" />
-              <p className="text-center ">{pizza.name} </p>
+              <p className="text-center fs-3">{pizza.name} </p>
             </div>
-            <div>
+            <div >
               <p className="text-center">LLevas: {obtenerCantidad(pizza)} </p>
               <button
                 className="btn btn-success m-1"
@@ -77,6 +80,9 @@ const Cart = ({ pizzas }) => {
           </div>
         ))}
       </div>
+      <h5>detalles del pedido: {nombretotal} </h5>
+      <h2>cantidad de produtos {total} </h2>
+      <h2>Cantidad a Pagar {"$"+totalPagar} </h2>
     </div>
   );
 };

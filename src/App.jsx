@@ -6,6 +6,7 @@ import pizzas from "./pizzas.json";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Cart from "./components/Cart";
+import Header from "./components/Header";
 
 const App=()=> {
   const [user, setUser] = useState(null);
@@ -14,6 +15,7 @@ const App=()=> {
   };
 
   return (
+
     <>
       <Navbar />
       <Cart pizzas={pizzas} />
